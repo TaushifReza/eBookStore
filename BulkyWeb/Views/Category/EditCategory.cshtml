@@ -1,9 +1,12 @@
-﻿@model Category
+﻿<h1>EditCategory</h1>
+
+@model Category
 
 <form method="post">
+    <input asp-for="Id" hidden=""/>
     <div class="border p-3 mt-4">
         <div class="row pb-2 text-center">
-            <h2 class="text-primary">Create Category</h2>
+            <h2 class="text-primary">Edit Category</h2>
             <hr/>
         </div>
         <div asp-validation-summary="All" class="text-danger"></div>
@@ -11,7 +14,7 @@
             <label class="p-0 pb-2" asp-for="Name"></label>
             <input class="form-control" asp-for="Name"/>
             <span asp-validation-for="Name" class="text-danger"></span>
-        </div>    
+        </div>
         <div class="mb-3 row p-1">
             <label class="p-0 pb-2" asp-for="DisplayOrder"></label>
             <input class="form-control" asp-for="DisplayOrder"/>
@@ -20,7 +23,7 @@
         <div class="row">
             <div class="col-6 col-md-3 p-1">
                 <button class="btn btn-primary form-control" type="submit">
-                    Create Category
+                    Update Category
                 </button>
             </div>
             <div class="col-6 col-md-3 text-end">
@@ -35,6 +38,6 @@
 @section Scripts
 {
     @{
-        <partial name="_ValidationScriptsPartial"/>
+        <partial name="_ValidationScriptsPartial" />
     }
 }
