@@ -15,7 +15,7 @@ namespace BulkyWeb.Controllers
 
         public IActionResult Index()
         {
-            List<Category> objCategoryList = _db.Categories.ToList();
+            List<Category>? objCategoryList = _db.Categories.ToList();
             return View(objCategoryList);
         }
 
@@ -38,6 +38,7 @@ namespace BulkyWeb.Controllers
             {
                 _db.Categories.Add(category);
                 _db.SaveChanges();
+                TempData["success"] = "Category created successful";
                 return RedirectToAction("Index");
             }
             return View();
@@ -64,6 +65,7 @@ namespace BulkyWeb.Controllers
             {
                 _db.Categories.Update(category);
                 _db.SaveChanges();
+                TempData["success"] = "Category edited successful";
                 return RedirectToAction("Index");
             }
             return View();
@@ -95,6 +97,7 @@ namespace BulkyWeb.Controllers
             }
             _db.Categories.Remove(categoryFromDb);
             _db.SaveChanges();
+            TempData["success"] = "Category deleted successful";
             return RedirectToAction("Index");
         }
     }
