@@ -1,6 +1,5 @@
-﻿using System.Diagnostics;
-using BulkyWeb.Data;
-using BulkyWeb.Models;
+﻿using Bulky.DataAccess.Data;
+using Bulky.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BulkyWeb.Controllers
@@ -73,7 +72,6 @@ namespace BulkyWeb.Controllers
 
         public IActionResult DeleteCategory(int? id)
         {
-            Debug.WriteLine("GET 1");
             if (id == null)
             {
                 return NotFound();
@@ -89,7 +87,6 @@ namespace BulkyWeb.Controllers
         [HttpPost, ActionName("DeleteCategory")]
         public IActionResult DeleteCategoryPOST(int? id)
         {
-            Debug.WriteLine("POST 1");
             Category? categoryFromDb = _db.Categories.Find(id);
             if (categoryFromDb == null)
             {
