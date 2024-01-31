@@ -1,0 +1,62 @@
+﻿@model List<Product>
+
+<div class="card shadow border-0 mt-4 mb-5">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-primary">Book List</h2>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4">
+        <div class="row">
+            <div class="col-6">
+            </div>        
+            <div class="col-6 text-end">
+                <a asp-area="Admin" asp-controller="Product" asp-action="CreateProduct" 
+                   class="btn btn-primary d-print-flex">
+                    <ion-icon name="add-outline"></ion-icon>
+                    Add New Book
+                </a>
+            </div>
+        </div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Book Title</th>
+                <th scope="col">ISBN</th>
+                <th scope="col">Author</th>
+                <th scope="col">Price</th>
+                <th scope="col">Category</th>
+                <th scope="col">Edit</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var obj in Model)
+            {
+                <tr>
+                    <th scope="row">@obj.Id</th>
+                    <td>@obj.Title</td>
+                    <td>@obj.ISBN</td>
+                    <td>@obj.Author</td>
+                    <td>@obj.ListPrice</td>
+                    <td>@obj.CategoryId</td>
+                    <td>
+                        <div class="w-75 btn-group">
+                            <a asp-area="Admin" asp-controller="Product" asp-action="EditProduct" 
+                               asp-route-id="@obj.Id" class="btn btn-primary mx-2">
+                                Edit
+                            </a>                        
+                            <a asp-area="Admin" asp-controller="Product" asp-action="DeleteProduct" 
+                               asp-route-id="@obj.Id" class="btn btn-danger mx-2">
+                                Delete
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</div>
