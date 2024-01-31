@@ -13,7 +13,7 @@
             <div class="col-6">
             </div>        
             <div class="col-6 text-end">
-                <a asp-area="Admin" asp-controller="Product" asp-action="CreateProduct" 
+                <a asp-area="Admin" asp-controller="Product" asp-action="UpsertProduct" 
                    class="btn btn-primary d-print-flex">
                     <ion-icon name="add-outline"></ion-icon>
                     Add New Book
@@ -44,7 +44,7 @@
                     <td>@obj.CategoryId</td>
                     <td>
                         <div class="w-75 btn-group">
-                            <a asp-area="Admin" asp-controller="Product" asp-action="EditProduct" 
+                            <a asp-area="Admin" asp-controller="Product" asp-action="UpsertProduct" 
                                asp-route-id="@obj.Id" class="btn btn-primary mx-2">
                                 Edit
                             </a>                        

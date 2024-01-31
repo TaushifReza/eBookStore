@@ -4,55 +4,70 @@
     <div class="card-header bg-secondary bg-gradient ml-0 py-3">
         <div class="row">
             <div class="col-12 text-center">
-                <h2 class="text-primary">Add Book</h2>
+                <h2 class="text-primary">@(Model.Product.Id!=0?"Update":"Add") Book</h2>
             </div>
         </div>
     </div>
     <div class="card-body p-4">
-        <form method="post" class="row">
+        <form method="post" class="row" enctype="multipart/form-data">
+            <input asp-for="Product.Id" hidden/>
             <div class="border border-pill p-3">
                 <div asp-validation-summary="All" class="text-danger"></div>
                 <div class="mb-3 row p-1">
                     <label class="p-0 pb-2" asp-for="Product.Title"></label>
-                    <input class="form-control" asp-for="Product.Title" />
+                    <input class="form-control" asp-for="Product.Title"/>
                     <span asp-validation-for="Product.Title" class="text-danger"></span>
-                </div>    
+                </div>
                 <div class="mb-3 row p-1">
                     <label class="p-0 pb-2" asp-for="Product.Description"></label>
-                    <input class="form-control" asp-for="Product.Description" />
+                    <script>
+                        tinymce.init({
+                            selector: 'textarea',
+                            plugins: 'ai tinycomments mentions anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed permanentpen footnotes advtemplate advtable advcode editimage tableofcontents mergetags powerpaste tinymcespellchecker autocorrect a11ychecker typography inlinecss',
+                            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link | align lineheight | tinycomments | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+                            tinycomments_mode: 'embedded',
+                            tinycomments_author: 'Author name',
+                            mergetags_list: [
+                                { value: 'First.Name', title: 'First Name' },
+                                { value: 'Email', title: 'Email' },
+                            ],
+                            ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
+                        });
+                    </script>
+                    <textarea class="form-control" asp-for="Product.Description"></textarea>
                     <span asp-validation-for="Product.Description" class="text-danger"></span>
                 </div>
                 <div class="row">
                     <div class="mb-3 col-6 p-1">
                         <label class="p-0 pb-2" asp-for="Product.ISBN"></label>
-                        <input class="form-control" asp-for="Product.ISBN" />
+                        <input class="form-control" asp-for="Product.ISBN"/>
                         <span asp-validation-for="Product.ISBN" class="text-danger"></span>
                     </div>
                     <div class="mb-3 col-6 p-1">
                         <label class="p-0 pb-2" asp-for="Product.Author"></label>
-                        <input class="form-control" asp-for="Product.Author" />
+                        <input class="form-control" asp-for="Product.Author"/>
                         <span asp-validation-for="Product.Author" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="row">
                     <div class="mb-3 col-3 p-1">
                         <label class="p-0 pb-2" asp-for="Product.ListPrice"></label>
-                        <input class="form-control" asp-for="Product.ListPrice" />
+                        <input class="form-control" asp-for="Product.ListPrice"/>
                         <span asp-validation-for="Product.ListPrice" class="text-danger"></span>
                     </div>
                     <div class="mb-3 col-3 p-1">
                         <label class="p-0 pb-2" asp-for="Product.Price"></label>
-                        <input class="form-control" asp-for="Product.Price" />
+                        <input class="form-control" asp-for="Product.Price"/>
                         <span asp-validation-for="Product.Price" class="text-danger"></span>
                     </div>
                     <div class="mb-3 col-3 p-1">
                         <label class="p-0 pb-2" asp-for="Product.Price50"></label>
-                        <input class="form-control" asp-for="Product.Price50" />
+                        <input class="form-control" asp-for="Product.Price50"/>
                         <span asp-validation-for="Product.Price50" class="text-danger"></span>
                     </div>
                     <div class="mb-3 col-3 p-1">
                         <label class="p-0 pb-2" asp-for="Product.Price100"></label>
-                        <input class="form-control" asp-for="Product.Price100" />
+                        <input class="form-control" asp-for="Product.Price100"/>
                         <span asp-validation-for="Product.Price100" class="text-danger"></span>
                     </div>
                 </div>
@@ -67,20 +82,29 @@
                     </div>
                     <div class="mb-3 col-6 p-1">
                         <label class="p-0 pb-2" asp-for="Product.ImageUrl"></label>
-                        <input class="form-control" asp-for="Product.ImageUrl" />
-                        <span asp-validation-for="Product.ImageUrl" class="text-danger"></span>
+                        <input class="form-control" type="file"/>
                     </div>
-                <div class="row">
-                    <div class="col-6 col-md-3 p-1">
-                        <button class="btn btn-primary form-control" type="submit">
-                            Add Book
-                        </button>
-                    </div>
-                    <div class="col-6 col-md-3 text-end">
-                        <a asp-area="Admin" asp-controller="Product" asp-action="Index" 
-                           class="btn btn-outline-primary form-control">
-                            Back To List
-                        </a>
+                    <div class="row">
+                        <div class="col-6 col-md-3 p-1">
+                            @if (Model.Product.Id != 0)
+                            {
+                                <button class="btn btn-primary form-control" type="submit">
+                                    Update Book
+                                </button>
+                            }
+                            else
+                            {
+                                <button class="btn btn-primary form-control" type="submit">
+                                    Add Book
+                                </button>
+                            }
+                        </div>
+                        <div class="col-6 col-md-3 text-end">
+                            <a asp-area="Admin" asp-controller="Product" asp-action="Index"
+                               class="btn btn-outline-primary form-control">
+                                Back To List
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>

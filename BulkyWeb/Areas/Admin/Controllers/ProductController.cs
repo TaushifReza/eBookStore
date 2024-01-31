@@ -4,6 +4,7 @@ using Bulky.Models;
 using Bulky.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace BulkyWeb.Areas.Admin.Controllers
 {
@@ -22,7 +23,7 @@ namespace BulkyWeb.Areas.Admin.Controllers
             return View(objCategoryList);
         }
 
-        public IActionResult CreateProduct()
+        public IActionResult UpsertProduct(int? id)
         {
             ProductVM productVm = new()
             {
@@ -34,10 +35,20 @@ namespace BulkyWeb.Areas.Admin.Controllers
                     }),
                 Product = new Product()
             };
-            return View(productVm);
+            if (id == null || id == 0)
+            {
+                // Create
+                return View(productVm);
+            }
+            else
+            {
+                //Update
+                productVm.Product = _unitOfWork.Product.Get(u => u.Id == id);
+                return View(productVm);
+            }
         }
         [HttpPost]
-        public IActionResult CreateProduct(ProductVM productVm)
+        public IActionResult UpsertProduct(ProductVM productVm, IFormFile? file)
         {
             if (ModelState.IsValid)
             {
@@ -56,33 +67,6 @@ namespace BulkyWeb.Areas.Admin.Controllers
                     });
                 return View(productVm);
             }
-        }
-
-        public IActionResult EditProduct(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            Product productFromDb = _unitOfWork.Product.Get(u => u.Id == id);
-            if (productFromDb == null)
-            {
-                return NotFound();
-            }
-            return View(productFromDb);
-        }
-        [HttpPost]
-        public IActionResult EditProduct(Product product)
-        {
-            if (ModelState.IsValid)
-            {
-                _unitOfWork.Product.Update(product);
-                _unitOfWork.Save();
-                TempData["success"] = "Product updated successful";
-                return RedirectToAction("Index");
-            }
-            return View();
         }
 
         public IActionResult DeleteProduct(int? id)
