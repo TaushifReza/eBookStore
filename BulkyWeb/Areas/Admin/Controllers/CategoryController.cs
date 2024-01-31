@@ -3,8 +3,9 @@ using Bulky.DataAccess.Repository.IRepository;
 using Bulky.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BulkyWeb.Controllers
+namespace BulkyWeb.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class CategoryController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -29,10 +30,11 @@ namespace BulkyWeb.Controllers
             /*if (!ModelState.IsValid) return View();*/
             if (category.Name == category.DisplayOrder.ToString())
             {
-                ModelState.AddModelError("name","Name and Display Order can't be same!!!");
-            }if (category.Name.ToLower() == "test")
+                ModelState.AddModelError("name", "Name and Display Order can't be same!!!");
+            }
+            if (category.Name.ToLower() == "test")
             {
-                ModelState.AddModelError("","Test is  an Invalid Name!!!");
+                ModelState.AddModelError("", "Test is  an Invalid Name!!!");
             }
             if (ModelState.IsValid)
             {
@@ -43,7 +45,7 @@ namespace BulkyWeb.Controllers
             }
             return View();
         }
-        
+
         public IActionResult EditCategory(int? id)
         {
             if (id == null)
