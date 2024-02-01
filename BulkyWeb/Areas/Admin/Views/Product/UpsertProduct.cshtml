@@ -11,13 +11,14 @@
     <div class="card-body p-4">
         <form method="post" class="row" enctype="multipart/form-data">
             <input asp-for="Product.Id" hidden/>
+            <input asp-for="Product.ImageUrl" hidden/>
             <div class="row">
                 <div class="col-10">
                     <div class="border border-pill p-3">
                         <div asp-validation-summary="All" class="text-danger"></div>
                         <div class="mb-3 row p-1">
                             <label class="p-0 pb-2" asp-for="Product.Title"></label>
-                            <input class="form-control" asp-for="Product.Title" />
+                            <input class="form-control" asp-for="Product.Title"/>
                             <span asp-validation-for="Product.Title" class="text-danger"></span>
                         </div>
                         <div class="mb-3 row p-1">
@@ -42,34 +43,34 @@
                         <div class="row">
                             <div class="mb-3 col-6 p-1">
                                 <label class="p-0 pb-2" asp-for="Product.ISBN"></label>
-                                <input class="form-control" asp-for="Product.ISBN" />
+                                <input class="form-control" asp-for="Product.ISBN"/>
                                 <span asp-validation-for="Product.ISBN" class="text-danger"></span>
                             </div>
                             <div class="mb-3 col-6 p-1">
                                 <label class="p-0 pb-2" asp-for="Product.Author"></label>
-                                <input class="form-control" asp-for="Product.Author" />
+                                <input class="form-control" asp-for="Product.Author"/>
                                 <span asp-validation-for="Product.Author" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="row">
                             <div class="mb-3 col-3 p-1">
                                 <label class="p-0 pb-2" asp-for="Product.ListPrice"></label>
-                                <input class="form-control" asp-for="Product.ListPrice" />
+                                <input class="form-control" asp-for="Product.ListPrice"/>
                                 <span asp-validation-for="Product.ListPrice" class="text-danger"></span>
                             </div>
                             <div class="mb-3 col-3 p-1">
                                 <label class="p-0 pb-2" asp-for="Product.Price"></label>
-                                <input class="form-control" asp-for="Product.Price" />
+                                <input class="form-control" asp-for="Product.Price"/>
                                 <span asp-validation-for="Product.Price" class="text-danger"></span>
                             </div>
                             <div class="mb-3 col-3 p-1">
                                 <label class="p-0 pb-2" asp-for="Product.Price50"></label>
-                                <input class="form-control" asp-for="Product.Price50" />
+                                <input class="form-control" asp-for="Product.Price50"/>
                                 <span asp-validation-for="Product.Price50" class="text-danger"></span>
                             </div>
                             <div class="mb-3 col-3 p-1">
                                 <label class="p-0 pb-2" asp-for="Product.Price100"></label>
-                                <input class="form-control" asp-for="Product.Price100" />
+                                <input class="form-control" asp-for="Product.Price100"/>
                                 <span asp-validation-for="Product.Price100" class="text-danger"></span>
                             </div>
                         </div>
@@ -84,7 +85,7 @@
                             </div>
                             <div class="mb-3 col-6 p-1">
                                 <label class="p-0 pb-2" asp-for="Product.ImageUrl"></label>
-                                <input class="form-control" type="file" name="file" />
+                                <input class="form-control" type="file" name="file"/>
                             </div>
                             <div class="row">
                                 <div class="col-6 col-md-3 p-1">
@@ -112,12 +113,10 @@
                     </div>
                 </div>
                 <div class="col-2">
-                    <img src="@Model.Product.ImageUrl" width="100%" 
+                    <img src="@Model.Product.ImageUrl" width="100%"
                          style="border-radius:5px; border: 1px solid #bbb9b9"/>
                 </div>
             </div>
-            @*here*@
-            
         </form>
     </div>
 </div>
