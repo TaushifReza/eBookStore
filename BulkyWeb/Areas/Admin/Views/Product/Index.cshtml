@@ -9,7 +9,7 @@
         </div>
     </div>
     <div class="card-body p-4">
-        <div class="row">
+        <div class="row mb-4">
             <div class="col-6">
             </div>        
             <div class="col-6 text-end">
@@ -20,10 +20,9 @@
                 </a>
             </div>
         </div>
-        <table class="table">
+        <table id="tblData" class="table table-bordered table-striped">
             <thead>
             <tr>
-                <th scope="col">ID</th>
                 <th scope="col">Book Title</th>
                 <th scope="col">ISBN</th>
                 <th scope="col">Author</th>
@@ -32,31 +31,11 @@
                 <th scope="col">Edit</th>
             </tr>
             </thead>
-            <tbody>
-            @foreach (var obj in Model)
-            {
-                <tr>
-                    <th scope="row">@obj.Id</th>
-                    <td>@obj.Title</td>
-                    <td>@obj.ISBN</td>
-                    <td>@obj.Author</td>
-                    <td>@obj.ListPrice</td>
-                    <td>@obj.Category.Name</td>
-                    <td>
-                        <div class="w-75 btn-group">
-                            <a asp-area="Admin" asp-controller="Product" asp-action="UpsertProduct" 
-                               asp-route-id="@obj.Id" class="btn btn-primary mx-2">
-                                Edit
-                            </a>                        
-                            <a asp-area="Admin" asp-controller="Product" asp-action="DeleteProduct" 
-                               asp-route-id="@obj.Id" class="btn btn-danger mx-2">
-                                Delete
-                            </a>
-                        </div>
-                    </td>
-                </tr>
-            }
-            </tbody>
         </table>
     </div>
 </div>
+
+@section Scripts
+{
+    <script src="~/js/product.js"></script>
+}
