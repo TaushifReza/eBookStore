@@ -79,6 +79,15 @@
                             </select>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="form-floating mb-3 col-12">
+                            <select style="display: none" asp-for="Input.CompanyId" asp-items="@Model.Input.CompanyList" class="form-select py-0">
+                                <option disabled="disabled" value="" selected="true">
+                                    --Select Company--
+                                </option>
+                            </select>
+                        </div>
+                    </div>
                     <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
                 </form>
             </div>
@@ -123,4 +132,17 @@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+    <script>
+        $(document).ready(function() {
+            $('#Input_Role').change(function() {
+                var selectedRole = $('#Input_Role Option:Selected').text();
+                if (selectedRole === "Company") {
+                    $('#Input_CompanyId').show();
+                } 
+                else {
+                    $('#Input_CompanyId').hide();
+                }
+            })
+        })
+    </script>
 }
