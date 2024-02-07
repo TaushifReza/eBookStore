@@ -1,0 +1,91 @@
+﻿@model Company
+
+<div class="card shadow border-0 mt-4">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-primary">@(Model.Id!=0?"Update":"Add") Company</h2>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4">
+        <form method="post" class="row" enctype="multipart/form-data">
+            <input asp-for="Id" hidden/>
+            <div class="row">
+                <div class="col-12">
+                    <div class="border border-pill p-3">
+                        <div asp-validation-summary="All" class="text-danger"></div>
+                        <div class="row">
+                            <div class="mb-3 col-6 p-1">
+                                <label class="p-0 pb-2" asp-for="Name"></label>
+                                <input class="form-control" asp-for="Name"/>
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+                            <div class="mb-3 col-6 p-1">
+                                <label class="p-0 pb-2" asp-for="PhoneNumber"></label>
+                                <input class="form-control" asp-for="PhoneNumber"/>
+                                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="mb-3 col-6 p-1">
+                                <label class="p-0 pb-2" asp-for="StreetAddress"></label>
+                                <input class="form-control" asp-for="StreetAddress" />
+                                <span asp-validation-for="StreetAddress" class="text-danger"></span>
+                            </div>
+                            <div class="mb-3 col-6 p-1">
+                                <label class="p-0 pb-2" asp-for="City"></label>
+                                <input class="form-control" asp-for="City"/>
+                                <span asp-validation-for="City" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="mb-3 col-6 p-1">
+                                <label class="p-0 pb-2" asp-for="State"></label>
+                                <input class="form-control" asp-for="State"/>
+                                <span asp-validation-for="State" class="text-danger"></span>
+                            </div>
+                            <div class="mb-3 col-6 p-1">
+                                <label class="p-0 pb-2" asp-for="PostalCode"></label>
+                                <input class="form-control" asp-for="PostalCode"/>
+                                <span asp-validation-for="PostalCode" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="row">
+                                <div class="col-6 col-md-3 p-1">
+                                    @if (Model.Id != 0)
+                                    {
+                                        <button class="btn btn-primary form-control" type="submit">
+                                            Update Company
+                                        </button>
+                                    }
+                                    else
+                                    {
+                                        <button class="btn btn-primary form-control" type="submit">
+                                            Add Company
+                                        </button>
+                                    }
+                                </div>
+                                <div class="col-6 col-md-3 text-end">
+                                    <a asp-area="Admin" asp-controller="Company" asp-action="Index"
+                                       class="btn btn-outline-primary form-control">
+                                        Back To List
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts
+{
+    @{
+        <partial name="_ValidationScriptsPartial"/>
+    }
+}

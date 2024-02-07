@@ -4,6 +4,7 @@ using Bulky.DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Bulky.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240207142611_addCompanyTable")]
+    partial class addCompanyTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -93,38 +96,6 @@ namespace Bulky.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Companies");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            City = "Kathmandu",
-                            Name = "Tech Solution",
-                            PhoneNumber = "9854398764",
-                            PostalCode = "46000",
-                            State = "Bagmati",
-                            StreetAddress = "Kamal Pokhari"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            City = "Dhangadhi",
-                            Name = "IT Nepal Solution",
-                            PhoneNumber = "9876547685",
-                            PostalCode = "19548",
-                            State = "Province 7",
-                            StreetAddress = "LN Chowk"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            City = "Janakpur",
-                            Name = "ITTI Nepal Solution",
-                            PhoneNumber = "9867542357",
-                            PostalCode = "876586",
-                            State = "Province 2",
-                            StreetAddress = "Bhanu Chowk"
-                        });
                 });
 
             modelBuilder.Entity("Bulky.Models.Product", b =>

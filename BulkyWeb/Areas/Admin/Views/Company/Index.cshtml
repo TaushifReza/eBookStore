@@ -1,0 +1,39 @@
+﻿<div class="card shadow border-0 mt-4 mb-5">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-primary">Company List</h2>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4">
+        <div class="row mb-4">
+            <div class="col-6">
+            </div>        
+            <div class="col-6 text-end">
+                <a asp-area="Admin" asp-controller="Company" asp-action="UpsertCompany" 
+                   class="btn btn-primary d-print-flex">
+                    <ion-icon name="add-outline"></ion-icon>
+                    Create New Company
+                </a>
+            </div>
+        </div>
+        <table id="tblData" class="table table-bordered table-striped">
+            <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Address</th>
+                <th scope="col">City</th>
+                <th scope="col">State</th>
+                <th scope="col">Phone Number</th>
+                <th scope="col">Edit</th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script src="~/js/company.js"></script>
+}
