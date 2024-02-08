@@ -34,6 +34,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <_ContentIncludedByDefault Remove="Areas\Customer\Views\Cart\Index.cshtml" />
     <_ContentIncludedByDefault Remove="Areas\Customer\Views\Home\Details.cshtml" />
   </ItemGroup>
 
@@ -42,6 +43,10 @@
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Areas\Customer\Views\Cart\Index.cshtml" />
   </ItemGroup>
 
 </Project>
