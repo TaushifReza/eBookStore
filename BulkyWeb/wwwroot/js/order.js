@@ -1,13 +1,34 @@
 ﻿var dataTable;
 
 $(document).ready(function () {
-    loadDataTable();
+    var url = window.location.search;
+    if (url.includes("inprocess")) {
+        loadDataTable("inprocess");
+    }
+    else {
+        if (url.includes("pending")) {
+            loadDataTable("pending");
+        }
+        else {
+            if (url.includes("approved")) {
+                loadDataTable("approved");
+            }
+            else {
+                if (url.includes("completed")) {
+                    loadDataTable("completed");
+                }
+                else {
+                    loadDataTable("all");
+                }
+            }
+        }
+    }
 });
 
-function loadDataTable() {
+function loadDataTable(status) {
     dataTable = $('#tblData').DataTable({
         "ajax": {
-            url: '/admin/order/getall',
+            url: '/admin/order/getall?status='+status,
         },
         "columns": [
             { data: 'id', "width": "5%" },
