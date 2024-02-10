@@ -1,6 +1,7 @@
 ﻿@model OrderVM
 
 <form method="post">
+    <input asp-for="OrderHeader.Id" hidden />
     <br />
     <div class="container">
         <div class="card">
@@ -10,7 +11,7 @@
                         <i class="fas fa-shopping-cart"></i> &nbsp; Order Summary
                     </div>
                     <div class="col-12 col-md-4 offset-md-2 text-right">
-                        <a asp-area="Admin" asp-controller="Order" asp-action="Index" 
+                        <a asp-area="Admin" asp-controller="Order" asp-action="Index"
                            class="btn btn-outline-info form-control btn-sm">Back to Orders</a>
                     </div>
                 </div>
@@ -34,7 +35,7 @@
                                     }
                                     else
                                     {
-                                        <input asp-for="OrderHeader.Name" type="text" class="form-control"  readonly/>
+                                        <input asp-for="OrderHeader.Name" type="text" class="form-control" readonly />
                                     }
                                 </div>
                             </div>
@@ -43,14 +44,14 @@
                                 <div class="col-8">
                                     @if (User.IsInRole(SD.Role_Admin) || User.IsInRole(SD.Role_Employee))
                                     {
-                                        <input asp-for="OrderHeader.PhoneNumber" type="text" 
+                                        <input asp-for="OrderHeader.PhoneNumber" type="text"
                                                class="form-control" />
-                                        <span asp-validation-for="OrderHeader.PhoneNumber" 
+                                        <span asp-validation-for="OrderHeader.PhoneNumber"
                                               class="text-danger"></span>
                                     }
                                     else
                                     {
-                                        <input asp-for="OrderHeader.PhoneNumber" type="text" 
+                                        <input asp-for="OrderHeader.PhoneNumber" type="text"
                                                class="form-control" readonly />
                                     }
                                 </div>
@@ -142,7 +143,7 @@
                                     @if (User.IsInRole(SD.Role_Admin) || User.IsInRole(SD.Role_Employee))
                                     {
                                         <input asp-for="OrderHeader.Carrier" type="text"
-                                               class="form-control" />
+                                               class="form-control" id="carrier" />
                                     }
                                     else
                                     {
@@ -157,7 +158,7 @@
                                     @if (User.IsInRole(SD.Role_Admin) || User.IsInRole(SD.Role_Employee))
                                     {
                                         <input asp-for="OrderHeader.TrackingNumber" type="text"
-                                               class="form-control" />
+                                               class="form-control" id="trackingNumber" />
                                     }
                                     else
                                     {
@@ -177,15 +178,15 @@
                                 <div class="row my-1">
                                     <div class="col-4 d-flex flex-row-reverse">Session ID</div>
                                     <div class="col-8">
-                                        <input asp-for="OrderHeader.SessionId" type="text" 
-                                               readonly class="form-control"/>
+                                        <input asp-for="OrderHeader.SessionId" type="text"
+                                               readonly class="form-control" />
                                     </div>
                                 </div>
                                 <div class="row my-1">
                                     <div class="col-4 d-flex flex-row-reverse">Payment Intent ID</div>
                                     <div class="col-8">
-                                        <input asp-for="OrderHeader.PaymentIntentId" type="text" 
-                                               readonly class="form-control"/>
+                                        <input asp-for="OrderHeader.PaymentIntentId" type="text"
+                                               readonly class="form-control" />
                                     </div>
                                 </div>
                             }
@@ -214,15 +215,18 @@
                             </div>
                             @if (User.IsInRole(SD.Role_Admin) || User.IsInRole(SD.Role_Employee))
                             {
-                                <input type="submit" class="btn btn-warning form-control my-1" 
-                                       value="Update Order Details" />
+                                <button type="submit" asp-action="UpdateOrderDetail"
+                                        class="btn btn-warning form-control my-1">
+                                    Update Order Details
+                                </button>
                             }
                         </div>
                         <div class="col-12 col-lg-5 offset-lg-1">
                             <h4 class="d-flex justify-content-between align-items-center mb-3">
                                 <span class="text-primary">Order Summary</span>
                             </h4>
-                            <label class="btn btn-outline-primary form-control my-2">Order Status - 
+                            <label class="btn btn-outline-primary form-control my-2">
+                                Order Status -
                                 @Model.OrderHeader.OrderStatus
                             </label>
 
@@ -234,8 +238,9 @@
                                             <div class="col-8">
 
                                                 <h6 class="my-0 text-primary">@detail.Product.Title</h6>
-                                                <small class="text-muted">Price : @detail.Price.ToString("c")
-                                                    </small><br />
+                                                <small class="text-muted">
+                                                    Price : @detail.Price.ToString("c")
+                                                </small><br />
                                                 <small class="text-muted">Quantity : @detail.Count</small>
                                             </div>
                                             <div class="col-4 text-end">
@@ -255,10 +260,39 @@
                                     </div>
                                 </li>
                             </ul>
-                            <input type="submit" class="btn btn-success form-control my-1" value="Pay Now" />
-                            <input type="submit" class="btn btn-primary form-control my-1" value="Start Processing" />
-                            <input type="submit" class="btn btn-primary form-control my-1" value="Ship Order" />
-                            <input type="submit" class="btn btn-danger form-control my-1" value="Cancel Order" />
+                            @if (Model.OrderHeader.PaymentStatus == SD.PaymentStatusDelayedPayment &&
+                            Model.OrderHeader.OrderStatus == SD.StatusShipped)
+                            {
+                                <button type="submit" class="btn btn-success form-control my-1 text-uppercase">
+                                    Pay Now
+                                </button>
+                            }
+                            @if (User.IsInRole(SD.Role_Admin) || User.IsInRole(SD.Role_Employee))
+                            {
+                                @if (Model.OrderHeader.OrderStatus == SD.StatusApproved)
+                                {
+                                    <button asp-action="StartProcessing" type="submit"
+                                            class="btn btn-primary form-control my-1 text-uppercase">
+                                        Start Processing
+                                    </button>
+                                }
+                                @if (Model.OrderHeader.OrderStatus == SD.StatusInProcess)
+                                {
+                                    <button type="submit" asp-action="ShipOrder" 
+                                            onclick="return validateInput()" 
+                                            class="btn btn-primary form-control my-1 text-uppercase">
+                                        Ship Order
+                                    </button>
+                                }
+                                @if (Model.OrderHeader.OrderStatus != SD.StatusRefunded &&
+                               Model.OrderHeader.OrderStatus != SD.StatusCancelled &&
+                               Model.OrderHeader.OrderStatus != SD.StatusShipped)
+                                {
+                                    <button type="submit" class="btn btn-danger form-control my-1 text-uppercase">
+                                        Cancel Order
+                                    </button>
+                                }
+                            }
                         </div>
                     </div>
                 </div>
@@ -266,3 +300,31 @@
         </div>
     </div>
 </form>
+
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial"/>
+    <script>
+        function validateInput() {
+            if (document.getElementById("trackingNumber").value == "") {
+                console.log("Hit1");
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Please enter tracking number!',
+                });
+                return false;
+            }
+            if (document.getElementById("carrier").value == "") {
+                console.log("Hit2");
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Please enter carrier!',
+                });
+                return false;
+            }
+            return true;
+        }
+    </script>
+}
