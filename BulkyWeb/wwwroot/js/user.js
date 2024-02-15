@@ -28,7 +28,7 @@ function loadDataTable() {
                                 style="cursor: pointed;">
                                 Lock
                             </a>
-                            <a class="btn btn-danger text-white" style="cursor: pointed;">
+                            <a href="/admin/user/RoleManagment?userId=${data.id}" class="btn btn-danger text-white" style="cursor: pointed;">
                                 Permission
                             </a>
                         </div>
@@ -41,7 +41,7 @@ function loadDataTable() {
                                 style="cursor: pointed;">
                                 UnLock
                             </a>
-                            <a class="btn btn-danger text-white" style="cursor: pointed;">
+                            <a href="/admin/user/RoleManagment?userId=${data.id}" class="btn btn-danger text-white" style="cursor: pointed;">
                                 Permission
                             </a>
                         </div>
