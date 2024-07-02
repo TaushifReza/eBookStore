@@ -8,27 +8,27 @@ This project covers a wide range of topics and follows best practices to create 
 
 ## Features
 
-- **ASP.NET Core MVC**: Structure the project using the Model-View-Controller pattern.
-- **Identity Security**: Implement secure authentication and authorization.
-- **Repository Pattern**: Separate data access logic using repositories.
-- **N-Tier Architecture**: Organize the application into layers (Presentation, Business Logic, Data Access).
-- **Identity Framework Integration**: Extend the user model with additional fields.
-- **Entity Framework & Code-First Migrations**: Manage the database schema and data access.
-- **Authentication & Authorization**: Secure the application with ASP.NET Core Identity.
-- **Email Notifications**: Send emails for various application events.
-- **Social Logins**: Integrate Facebook login.
-- **Payment Processing**: Accept payments using Stripe.
-- **Sessions**: Manage user sessions effectively.
-- **View Components & TempData**: Utilize advanced MVC features.
-- **Data Seeding**: Populate the database with initial data.
+- **`ASP.NET Core MVC`**: Structure the project using the Model-View-Controller pattern.
+- **`Identity Security`**: Implement secure authentication and authorization.
+- **`Repository Pattern`**: Separate data access logic using repositories.
+- **`N-Tier Architecture`**: Organize the application into layers (Presentation, Business Logic, Data Access).
+- **`Identity Framework Integration`**: Extend the user model with additional fields.
+- **`Entity Framework & Code-First Migrations`**: Manage the database schema and data access.
+- **`Authentication & Authorization`**: Secure the application with ASP.NET Core Identity.
+- **`Email Notifications`**: Send emails for various application events.
+- **`Social Logins**: Integrate Facebook login.
+- **`Payment Processing`**: Accept payments using Stripe.
+- **`Sessions**: Manage user sessions effectively.
+- **`View Components & TempData`**: Utilize advanced MVC features.
+- **`Data Seeding`**: Populate the database with initial data.
 
 ## Project Structure
 
 The project follows an N-Tier architecture with the following layers:
 
-- **Presentation Layer**: Contains the ASP.NET Core MVC views and controllers.
-- **Business Logic Layer**: Contains the service classes and business logic.
-- **Data Access Layer**: Contains the repository classes and Entity Framework DbContext.
+- **`Presentation Layer`**: Contains the ASP.NET Core MVC views and controllers.
+- **`Business Logic Layer`**: Contains the service classes and business logic.
+- **`Data Access Layer`**: Contains the repository classes and Entity Framework DbContext.
 
 ## Technologies Used
 
