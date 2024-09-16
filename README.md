@@ -4,7 +4,7 @@
 
 Welcome to the Bulky Book repository! This project is a comprehensive ASP.NET Core web application demonstrate advanced concepts in ASP.NET Core development. The application is a fully functional e-commerce website where customers can browse book, add them to their cart, and complete purchases using credit cards. Admins can manage orders and handle transactions.
 
-This project covers a wide range of topics and follows best practices to create a robust, scalable, and maintainable application.
+This project covers a wide range of topics and follows best  practices to create a robust, scalable, and maintainable application.
 
 ## Features
 
