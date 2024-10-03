@@ -56,7 +56,7 @@ namespace Bulky.DataAccess.DBInitializer
                 _roleManager.CreateAsync(new IdentityRole(SD.Role_Company))
                     .GetAwaiter().GetResult();
 
-                //if role are not created, then we will create admin user as well
+                // if role are not created, then we will create admin user as well
                 _userManager.CreateAsync(new ApplicationUser
                 {
                     UserName = "admin@gmail.com",
